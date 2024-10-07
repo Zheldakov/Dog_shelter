@@ -13,3 +13,5 @@ class Command(BaseCommand):
             print(ex)
         else:
             print("Created DATABASE")
+        finally:
+            conn.close()
