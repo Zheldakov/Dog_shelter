@@ -1,3 +1,4 @@
+"""Команда создания администратора Django (DjangoAdmin)"""
 from django.core.management import BaseCommand
 from django.template.defaultfilters import first
 

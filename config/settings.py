@@ -10,6 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+"""
+Настройки Django для проекта config.
+
+Сгенерированы с помощью "django-admin startproject" с использованием Django 5.0.9.
+
+Для получения дополнительной информации об этом файле смотрите
+https://docs.djangoproject.com/en/5.0/topics/settings/
+
+Полный список настроек и их значений приведен в разделе
+https://docs.djangoproject.com/en/5.0/ref/settings/
+"""
+
 from pathlib import Path
 
 from django.conf.global_settings import AUTH_USER_MODEL
@@ -18,6 +30,7 @@ from dotenv import load_dotenv
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Полный путь к корневому каталогу проекта
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -25,16 +38,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# секретный ключ Django, который должен быть уникальным и безопасным
 SECRET_KEY = 'django-insecure-3yqmuu_5apuowm_^7!l_0-x7=e6v(-vgyl5$m08q+_)@ejz!%#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Разрешает отключение проверки безопасности во время разработки (DEBUG = False при окончании разработки)
 DEBUG = True
 
+# Доменные имена, на которых разрешена публикация проекта
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# Набор всех установленных приложений в проекте
 INSTALLED_APPS = [
     #базовый функционал
     'django.contrib.admin',
@@ -47,7 +63,7 @@ INSTALLED_APPS = [
     # добавленные приложения
     'users',
 ]
-
+# плагины и библиотеки
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,9 +73,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+# Основной файл с URLS проекта
 ROOT_URLCONF = 'config.urls'
 
+# Шаблоны проекта
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -76,12 +93,13 @@ TEMPLATES = [
     },
 ]
 
+# переменная указывает на файл wsgi с переменной application
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
+# Database указывает на работу с базой данных
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-# Меняем настройки ДБ
+# Меняем настройки ДБ (в данном примере MS SQL Server)
 load_dotenv()
 USER = os.getenv('MS_SQL_USER')
 PASSWORD = os.getenv('MS_SQL_KEY')
@@ -101,6 +119,7 @@ DATABASES = {
         }
     }
 }
+# ниже по умолчанию, настройки Django для подключения к SQLite
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -130,9 +149,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
-
+# язык приложений
 LANGUAGE_CODE = 'ru-ru'
-
+# временная зона для работы приложения
 TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
@@ -149,4 +168,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# добавлена авторизованая модель пользователя
 AUTH_USER_MODEL = 'users.User'

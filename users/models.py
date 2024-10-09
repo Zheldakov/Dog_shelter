@@ -1,9 +1,12 @@
+# Описание моделей
 from django.db import models
 from django.contrib.auth.models import  AbstractUser
 
+# настройка полей, чтобы возможно было заполнить поля пустыми
 NULLABLE ={'blank': True, 'null': True}
 
 class User(AbstractUser):
+    """Модель пользователя с полями email, телефон и Telegram username."""
     username = None
     email = models.EmailField(unique=True,verbose_name='email')
     phone = models.CharField(max_length=35, verbose_name='telephone_number', **NULLABLE)
