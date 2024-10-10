@@ -3,7 +3,7 @@ from django.core.management import BaseCommand
 from django.template.defaultfilters import first
 
 from users.models import User
-
+from config.settings import SU_DJANGO_PASSWORD
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
@@ -15,6 +15,6 @@ class Command(BaseCommand):
             is_superuser = True,
             is_active = True
         )
-        user.set_password('qwerty')
+        user.set_password(SU_DJANGO_PASSWORD)
         user.save()
         return 'Admin created'

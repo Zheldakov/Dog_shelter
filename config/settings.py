@@ -105,6 +105,7 @@ USER = os.getenv('MS_SQL_USER')
 PASSWORD = os.getenv('MS_SQL_KEY')
 HOST = os.getenv('MS_SQL_SERVER')
 DATABASE = os.getenv('MS_SQL_DATABASE')
+SU_DJANGO_PASSWORD = os.getenv('SU_DJANGO_PASSWORD')
 
 DATABASES = {
     'default':{
