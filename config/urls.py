@@ -32,11 +32,12 @@ Including another URLconf
 """
 """Отслеживание url-адресов"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 # urls для административной панели Django
 urlpatterns = [
-                  path('admin/', admin.site.urls), # URL для административной панели Django
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)# Добавляем медиафайлы
+                  path('admin/', admin.site.urls),  # URL для административной панели Django
+                  path('', include('dogs.urls', namespace='dogs')),  # URL для приложения dogs
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # Добавляем медиафайлы
