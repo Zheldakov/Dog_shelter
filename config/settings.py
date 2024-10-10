@@ -62,6 +62,7 @@ INSTALLED_APPS = [
 
     # добавленные приложения
     'users',
+    'dogs',
 ]
 # плагины и библиотеки
 MIDDLEWARE = [
