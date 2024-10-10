@@ -24,7 +24,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
-from django.conf.global_settings import AUTH_USER_MODEL
+from django.conf.global_settings import AUTH_USER_MODEL, MEDIA_URL
 from dotenv import load_dotenv
 
 import os
@@ -164,8 +164,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/' # https://docs.djangoproject.com/en/5.
+STATICFILES_DIR =(
+        BASE_DIR /'static', # Путь к статическим файлам
+)
+"""django.views.static.serve()
++static(settings.STATIC_URL, document_root=settings.STATIC_ROOT
+прописывается config.urls.py
+"""
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = (
+    BASE_DIR /'media',
+)
+
+"""Послкольку MEDIA_URL определен как '/media/', то config.urls.py добовляется следующая строка
++static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)"""
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

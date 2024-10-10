@@ -33,8 +33,10 @@ Including another URLconf
 """Отслеживание url-адресов"""
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 # urls для административной панели Django
 urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+                  path('admin/', admin.site.urls), # URL для административной панели Django
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)# Добавляем медиафайлы
