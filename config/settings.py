@@ -172,7 +172,7 @@ STATICFILES_DIR =(
 +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT
 прописывается config.urls.py
 """
-
+# Настройки для загрузки изображений
 MEDIA_URL = '/media/'
 MEDIA_ROOT = (
     BASE_DIR /'media',
