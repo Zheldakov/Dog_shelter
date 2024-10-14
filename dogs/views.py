@@ -8,7 +8,7 @@ from dogs.forms import DogForm
 def index(request):
     """ Показывает главную страницу с информацией о категориях и питомниках."""
     context = {
-        'objects_list': Category.objects.all()[:3],
+        'object_list': Category.objects.all()[:3],
         'title': "Питомник - Главная"
     }
     return render(request, 'dogs\index.html', context)
@@ -17,7 +17,7 @@ def index(request):
 def categories(request):
     """ Показывает страницу с информацией о всех категориях питомника."""
     context = {
-        'objects_list': Category.objects.all(),
+        'object_list': Category.objects.all(),
         'title': "Питомник - Все наши породы"
     }
     return render(request, 'dogs\categories.html', context)
@@ -27,7 +27,7 @@ def category_dogs(request, pk):
     """ Показывает страницу с информацией о питомцах определенной категории."""
     category_item = Category.objects.get(pk=pk)
     context = {
-        'objects_list': Dog.objects.filter(category_id=pk),
+        'object_list': Dog.objects.filter(category_id=pk),
         'title': f'Собаки породы {category_item.name}',
         'category_pk': category_item.pk,
     }
@@ -37,10 +37,11 @@ def category_dogs(request, pk):
 def dogs_list_view(request):
     """ Показывает страницу со списком всех питомцев."""
     context = {
-        'objects_list': Dog.objects.all(),
+        'object_list': Dog.objects.all(),
         'title': "Питомник - Все наши собаки"
     }
-    return render(request, 'dogs\dogs_list_view.html', context)
+    return render(request, 'dogs\dogs_list_view.html', context) # пока как я понимаю нет
+    # return render(request, 'dogs\dogs.html', context) # тестовый вариант
 
 
 def dog_create_view(request):
