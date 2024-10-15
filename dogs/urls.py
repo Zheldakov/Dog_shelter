@@ -10,7 +10,7 @@ urlpatterns = [
     path('categories/<int:pk>/dogs/', category_dogs, name='category_dogs'), # url на страницу с информацией о питомцах определенной кат
     path('dogs/', dogs_list_view, name='list_dogs'),  # url на страницу с информацией о всех питомцах (вместо pk)
     path('dogs/create',dog_create_view, name='create_dog'), # url на страницу создания нового питомца
-    path('dogs/detail/<int:pk>/',dog_detail_view, name='create_dog'),
-    path('dogs/update/<int:pk>/',dog_update_view, name='create_dog'),
-    path('dogs/delete/<int:pk>/',dog_delete_view, name='create_dog')
+    path('dogs/detail/<int:pk>/',dog_detail_view, name='detail_dog'),
+    path('dogs/update/<int:pk>/',dog_update_view, name='update_dog'),
+    path('dogs/delete/<int:pk>/',dog_delete_view, name='delete_dog')
 ]
