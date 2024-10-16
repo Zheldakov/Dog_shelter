@@ -40,8 +40,8 @@ def dogs_list_view(request):
         'object_list': Dog.objects.all(),
         'title': "Питомник - Все наши собаки"
     }
-    return render(request, 'dogs\dogs_list_view.html', context)  # пока как я понимаю нет
-    # return render(request, 'dogs\dogs.html', context) # тестовый вариант
+    # return render(request, 'dogs\dogs_list_view.html', context)  # пока как я понимаю нет
+    return render(request, 'dogs\dogs.html', context) # тестовый вариант
 
 
 def dog_create_view(request):
@@ -73,12 +73,8 @@ def dog_update_view(request, pk):
         if form.is_valid():  # Если форма валидна, сохраняем данные
             dog_object = form.save()  # Сохраняем питомца в базе
             dog_object.save()  # Сохраняем питомца в базе
-            return HttpResponseRedirect(
-                reverse('dogs:detail.dog', args={pk: pk}))  # Переходим на страницу детальной информации питомца
-        return render(request, 'dogs/update.html', {
-            'object': dog_object,
-            'form': DogForm(instance=dog_object)
-        }, )  # Отображаем форму создания питомца
+            return HttpResponseRedirect(reverse('dogs:detail_dog', args={pk: pk}))  #
+    return render(request, 'dogs/update.html', {'object': dog_object, 'form': DogForm(instance=dog_object)}, )  # Отображаем форму создания питомца
 
 
 def dog_delete_view(request, pk):
