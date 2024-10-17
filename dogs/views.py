@@ -8,7 +8,7 @@ from dogs.forms import DogForm
 def index(request):
     """ Показывает главную страницу с информацией о категориях и питомниках."""
     context = {
-        'object_list': Category.objects.all()[:3],
+        'object_list': Category.objects.all()[:3], # отображение категорий ограничено тремя
         'title': "Питомник - Главная"
     }
     return render(request, 'dogs\index.html', context)
