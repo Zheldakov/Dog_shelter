@@ -12,7 +12,7 @@
         </div>
         <div class='card-body'>
 
-            У {% csrf_token %}
+            {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-outline">
                 {% if object %}
