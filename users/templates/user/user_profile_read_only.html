@@ -16,7 +16,7 @@
                 <span class="card-text">Телефон: {{user.phone|default:"не указано"}}</span><br>
                 <span class="card-text">Телеграмм: {{user.telegram|default:"не указано"}}</span><br>
                 <button class="btn btn-outline-warning">
-                    <a class="btn btn-link" href="{% url 'dogs:index' %}">Обновить</a>
+                    <a class="btn btn-link" href="{% url 'users:update_user' %}">Обновить</a>
                 </button>
             </div>
             <div class="card-footer"></div>
