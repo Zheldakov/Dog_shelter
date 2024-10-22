@@ -1,4 +1,4 @@
-from django.shortcuts import reverse, render
+from django.shortcuts import reverse, render, redirect
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -51,3 +51,9 @@ def user_profile_view(request):
         # 'form': UserForm(instance=user_object),
     }
     return render(request, 'user/user_profile_read_only.html', context)
+
+
+def user_logout_view(request):
+    # выход из системы
+    logout(request)
+    return redirect('dogs:index')
