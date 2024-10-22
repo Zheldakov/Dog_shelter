@@ -10,10 +10,11 @@
                  src="{{ user.avatar|user_media }}" width="300" height="700"
                  alt="Card image cap">
             <div class="card-body">
-                <span class="card-text">Имя: {{user.first_name|default:"не указано"}}</span><br>
-                <span class="card-text">Фамилия: {{user.last_name|default:"не указано"}}</span><br>
+                <span class="card-text">Имя: {{user.first_name}}</span><br>
+                <span class="card-text">Фамилия: {{user.last_name}}</span><br>
                 <span class="card-text">Почта: {{user.email}}</span><br>
                 <span class="card-text">Телефон: {{user.phone|default:"не указано"}}</span><br>
+                <span class="card-text">Телеграмм: {{user.telegram|default:"не указано"}}</span><br>
                 <button class="btn btn-outline-warning">
                     <a class="btn btn-link" href="{% url 'dogs:index' %}">Обновить</a>
                 </button>
