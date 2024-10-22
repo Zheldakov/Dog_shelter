@@ -47,7 +47,7 @@ def user_profile_view(request):
     user_object = request.user
     context = {
         # 'user_object': user_object,
-        'title': f'Ваш профиль {user_object.firstname}',
+        'title': f'Ваш профиль {user_object.first_name}',
         # 'form': UserForm(instance=user_object),
     }
     return render(request, 'user/user_profile_read_only.html', context)
