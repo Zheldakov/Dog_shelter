@@ -3,7 +3,14 @@ from django import forms
 from users.models import User
 
 
-class UserForm(forms.ModelForm):
+class StyleFromMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class UserForm(StyleFromMixin, forms.ModelForm):
     """Форма редактирования профиля пользователя."""
 
     class Meta:
@@ -11,7 +18,7 @@ class UserForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email', 'phone',)
 
 
-class UserRegisterForm(forms.ModelForm):
+class UserRegisterForm(StyleFromMixin, forms.ModelForm):
     """ Форма для регистрации нового пользователя."""
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput)
@@ -29,7 +36,7 @@ class UserRegisterForm(forms.ModelForm):
         return cd['password2']
 
 
-class UserLoginForm(forms.Form):
+class UserLoginForm(StyleFromMixin, forms.Form):
     """ Форма для авторизации пользователя."""
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
