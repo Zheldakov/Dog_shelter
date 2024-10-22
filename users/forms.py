@@ -3,6 +3,14 @@ from django import forms
 from users.models import User
 
 
+class UserForm(forms.ModelForm):
+    """Форма редактирования профиля пользователя."""
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'phone',)
+
+
 class UserRegisterForm(forms.ModelForm):
     """ Форма для регистрации нового пользователя."""
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
