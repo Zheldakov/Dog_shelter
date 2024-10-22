@@ -11,7 +11,7 @@ def index(request):
         'object_list': Category.objects.all()[:3], # отображение категорий ограничено тремя
         'title': "Питомник - Главная"
     }
-    return render(request, 'dogs\index.html', context)
+    return render(request, 'dogs/index.html', context)
 
 
 def categories(request):
@@ -20,7 +20,7 @@ def categories(request):
         'object_list': Category.objects.all(),
         'title': "Питомник - Все наши породы"
     }
-    return render(request, 'dogs\categories.html', context)
+    return render(request, 'dogs/categories.html', context)
 
 
 def category_dogs(request, pk):
@@ -31,7 +31,7 @@ def category_dogs(request, pk):
         'title': f'Собаки породы {category_item.name}',
         'category_pk': category_item.pk,
     }
-    return render(request, 'dogs\dogs.html', context)
+    return render(request, 'dogs/dogs.html', context)
 
 
 def dogs_list_view(request):
@@ -41,7 +41,7 @@ def dogs_list_view(request):
         'title': "Питомник - Все наши собаки"
     }
     # return render(request, 'dogs\dogs_list_view.html', context)  # пока как я понимаю нет
-    return render(request, 'dogs\dogs.html', context) # тестовый вариант
+    return render(request, 'dogs/dogs.html', context) # тестовый вариант
 
 
 def dog_create_view(request):
@@ -51,7 +51,7 @@ def dog_create_view(request):
         if form.is_valid():  # Если форма валидна, сохраняем данные
             dog = form.save()  # Сохраняем питомца в базе
             return HttpResponseRedirect(reverse('dogs:list_dogs'))  # Переходим на страницу детальной информации питомца
-    return render(request, 'dogs\create.html', {'form': DogForm()}, )  # Отображаем форму создания питомца
+    return render(request, 'dogs/create.html', {'form': DogForm()}, )  # Отображаем форму создания питомца
 
 
 def dog_detail_view(request, pk):
@@ -61,7 +61,7 @@ def dog_detail_view(request, pk):
         'object': Dog.objects.get(pk=pk),  # Получаем питомца из базы по pk,
         'title': f'Детальная информация о собаке {dog_item.name}'
     }
-    return render(request, 'dogs\detail.html', context)
+    return render(request, 'dogs/detail.html', context)
 
 
 def dog_update_view(request, pk):

@@ -1,4 +1,4 @@
-from audioop import reverse
+from django.shortcuts import reverse
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
