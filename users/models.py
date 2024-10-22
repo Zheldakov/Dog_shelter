@@ -9,8 +9,11 @@ class User(AbstractUser):
     """Модель пользователя с полями email, телефон и Telegram username."""
     username = None
     email = models.EmailField(unique=True,verbose_name='email')
-    phone = models.CharField(max_length=35, verbose_name='telephone_number', **NULLABLE)
-    telegram = models.CharField(max_length=150, verbose_name='Telegram_username', **NULLABLE)
+    first_name = models.CharField(max_length=150, verbose_name='First Name', **NULLABLE)
+    last_name = models.CharField(max_length=150, verbose_name='Last Name', **NULLABLE)
+    phone = models.CharField(max_length=35, verbose_name='Phone number', **NULLABLE)
+    telegram = models.CharField(max_length=150, verbose_name='Telegram Username', **NULLABLE)
+    avatar = models.ImageField(upload_to='users/', verbose_name='Avatar', **NULLABLE)
     is_active = models.BooleanField(default=True, verbose_name='active', help_text='Активный пользователь')
 
     USERNAME_FIELD = "email"
