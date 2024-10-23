@@ -21,7 +21,8 @@ class UserForm(StyleFromMixin, forms.ModelForm):
 
 class UserRegisterForm(StyleFromMixin, forms.ModelForm):
     """ Форма для регистрации нового пользователя."""
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput, min_length=6, max_length=12)
+    # password = forms.CharField(label='Пароль', widget=forms.PasswordInput, min_length=8, max_length=12) # c спроверкой поля
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput) # тут свой валидатор
     password2 = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput)
 
     class Meta:
