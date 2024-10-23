@@ -3,18 +3,20 @@
 {% block content %}
 <form method="post" enctype="multipart/form-data" class="row">
     <div class="col-6">
-        <div class='card'>
-            {% if object %}
-            Редактирование собаки
-            {% else %}
-            Добавление собаки
-            {% endif %}
+        <div class="card">
+            <div class="card-header">
+                {% if object %}
+                    Редактирование собаки
+                {% else %}
+                    Добавление собаки
+                {% endif %}
+            </div>
         </div>
-        <div class='card-body'>
+        <div class="card-body">
 
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-outline">
+            <button type="submit" class="btn btn-outline-success">
                 {% if object %}
                 Сохранить
                 {% else %}
