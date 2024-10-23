@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.decorators import login_required
 
 from users.forms import UserRegisterForm, UserLoginForm, UserUpdateForm, UserPasswordChangeForm
-
+from users.services import send_register_email
 
 def user_register_view(request):
     # Вывод формы регистрации
@@ -16,6 +16,7 @@ def user_register_view(request):
             new_user = form.save()  # Получаем нового пользователя
             new_user.set_password(form.cleaned_data['password'])  # Установка пароля
             new_user.save()  # Сохраняем нового пользователя
+            send_register_email(new_user.email) # отправка сообщения на почту
             return HttpResponseRedirect(reverse('users:login_user'))  # Переход на главную страницу питомника
     context = {'form': form}
     return render(request, 'user/register_user.html', context)
