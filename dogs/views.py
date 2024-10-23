@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect
 from dogs.models import Category, Dog
 from django.urls import reverse
 from dogs.forms import DogForm
+
+
 def index(request):
     """ Показывает главную страницу с информацией о категориях и питомниках."""
     context = {
@@ -72,6 +74,7 @@ def dog_detail_view(request, pk):
     }
     return render(request, 'dogs/detail.html', context)
 
+
 @login_required
 def dog_update_view(request, pk):
     """ Страница редактирования питомца."""
@@ -83,12 +86,12 @@ def dog_update_view(request, pk):
             dog_object = form.save()  # Сохраняем питомца в базе
             dog_object.save()  # Сохраняем питомца в базе
             return HttpResponseRedirect(reverse('dogs:detail_dog', args={pk: pk}))
-        context = {
+    context = {
             'object': dog_object,
             'form': DogForm(instance=dog_object),
             'title': f'Редактирование информации о собаке {dog_object.name}'  # Заголовок страницы редактирования
         }
-    return render(request, 'dogs/update.html',context )  # Отображаем форму создания питомца
+    return render(request, 'dogs/update.html', context)  # Отображаем форму создания питомца
 
 
 def dog_delete_view(request, pk):
