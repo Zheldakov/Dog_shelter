@@ -1,3 +1,6 @@
+import random
+import string
+
 from django.shortcuts import reverse, render, redirect
 
 from django.contrib import messages
@@ -6,7 +9,8 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.decorators import login_required
 
 from users.forms import UserRegisterForm, UserLoginForm, UserUpdateForm, UserPasswordChangeForm
-from users.services import send_register_email
+from users.services import send_register_email, send_new_password
+
 
 def user_register_view(request):
     # Вывод формы регистрации
@@ -16,7 +20,7 @@ def user_register_view(request):
             new_user = form.save()  # Получаем нового пользователя
             new_user.set_password(form.cleaned_data['password'])  # Установка пароля
             new_user.save()  # Сохраняем нового пользователя
-            send_register_email(new_user.email) # отправка сообщения на почту
+            send_register_email(new_user.email)  # отправка сообщения на почту
             return HttpResponseRedirect(reverse('users:login_user'))  # Переход на главную страницу питомника
     context = {'form': form}
     return render(request, 'user/register_user.html', context)
@@ -94,3 +98,13 @@ def user_change_password_view(request):
             messages.error(request, "Пароль не был изменен. Проверьте введенные данные.")
     context = {'form': form}
     return render(request, 'user/change_password_user.html', context)
+
+
+@login_required
+def user_generate_new_password(request):
+    # генерация нового пароля и отправка его на почту
+    new_password = ''.join(random.sample((string.ascii_letters + string.digits), 12))
+    request.user.set_password(new_password)
+    request.user.save()
+    send_new_password(request.user.email, new_password)
+    return redirect(reverse('dogs:index'))
