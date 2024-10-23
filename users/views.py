@@ -1,3 +1,5 @@
+from lib2to3.fixes.fix_input import context
+
 from django.shortcuts import reverse, render, redirect
 
 from django.http import HttpResponseRedirect, HttpResponse
@@ -8,15 +10,16 @@ from users.forms import UserRegisterForm, UserLoginForm, UserUpdateForm
 
 
 def user_register_view(request):
-    # Вывод формы регестрации
+    # Вывод формы регистрации
+    form = UserRegisterForm(request.POST)
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
         if form.is_valid():  # Если форма валидна, сохраняем данные
             new_user = form.save()  # Получаем нового пользователя
             new_user.set_password(form.cleaned_data['password'])  # Установка пароля
             new_user.save()  # Сохраняем нового пользователя
             return HttpResponseRedirect(reverse('users:login_user'))  # Переход на главную страницу питомника
-    return render(request, 'user/register_user.html', {'form': UserRegisterForm}, )
+    context = {'form': form}
+    return render(request, 'user/register_user.html', context)
 
 
 def user_login_view(request):
@@ -33,11 +36,10 @@ def user_login_view(request):
                 else:
                     return HttpResponse('Аккаунт не активен')
 
-
-    else:
-        # если запрос GET, то рендерим форму входа
-        form = UserLoginForm()
-    return render(request, 'user/login_user.html', {'form': form})
+    form = UserLoginForm()
+    context = {
+        'form': form}
+    return render(request, 'user/login_user.html', context)
 
 
 @login_required
