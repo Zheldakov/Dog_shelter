@@ -1,12 +1,9 @@
-from lib2to3.fixes.fix_input import context
-
 from django.shortcuts import reverse, render, redirect
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from users.models import User
 from users.forms import UserRegisterForm, UserLoginForm, UserUpdateForm
 
 
