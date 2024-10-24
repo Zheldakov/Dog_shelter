@@ -29,6 +29,9 @@ from dotenv import load_dotenv
 
 import os
 
+# Путь, куда попадают не авторизованные пользователи, при использовании функций для авторизованных пользователей
+LOGIN_URL = 'users:login_user'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # Полный путь к корневому каталогу проекта
 BASE_DIR = Path(__file__).resolve().parent.parent
