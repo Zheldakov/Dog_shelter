@@ -16,13 +16,13 @@
                 <span class="card-text">Телефон: {{user.phone|default:"не указано"}}</span><br>
                 <span class="card-text">Телеграмм: {{user.telegram|default:"не указано"}}</span><br>
                 <button class="btn btn-outline-primary">
-                    <a class="btn btn-link" href="{% url 'users:update_user' %}">Обновить</a>
+                    <a class="btn btn-link" href="{% url 'users:update_user' %}">обновить</a>
                 </button>
                 <button class="btn btn-outline-warning">
-                    <a class="btn btn-link" href="{% url 'users:change_password_user' %}">Изменить пароль</a>
+                    <a class="btn btn-link" href="{% url 'users:change_password_user' %}">изменить пароль</a>
                 </button>
                 <button class="btn btn-outline-danger">
-                    <a class="btn btn-link" href="{% url 'users:generate_new_password_user' %}">Случайный пароль</a>
+                    <a class="btn btn-link" href="{% url 'users:generate_new_password_user' %}">генерация пароля</a>
                 </button>
             </div>
             <div class="card-footer"></div>
