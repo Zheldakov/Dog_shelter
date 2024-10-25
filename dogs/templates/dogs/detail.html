@@ -6,7 +6,7 @@
         <img class="card-img-top" src="{{ object.photo|mymedia }}" width="300" height="320" alt="Card image cap">
         <div class="card-body">
             <p class="card-text">{{ object.name|title }}</p>
-            <span class="text-muted">{{ object.birth_data_date|default:"-" }}</span>
+            <span class="text-muted">{{ object.birth_date|default:"-" }}</span>
             <br>
             <span class="text-muted">{{ object.owner|default:"Без хозяина" }}</span>
             {% if object.owner.phone is not none %}
